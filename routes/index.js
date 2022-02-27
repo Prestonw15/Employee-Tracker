@@ -239,4 +239,48 @@ async function startQuestions() {
        
     }
 
-}
+    // this will allow the user to quit
+    if (question.trackerAction === 'Quit') {
+        console.log("Have a nice day! Press control c to exit ");
+        return;
+    }
+    startQuestions();
+};
+
+
+// function to view the departments
+const viewDepartments = () => {
+    departments = [];
+
+    db.query(`SELECT * FROM department`, (err, row) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        for (let i = 0; i < row.length; i++){
+            departments.push(row[i]);
+        }
+        console.table('', departments);
+        console.log('Arrow down to perfrom another action');
+    })
+};
+
+// function to view roles 
+
+const viewRoles = () => {
+
+    roles = [];
+
+    db.query(`SELECT * FROM employeerole`, (err, row) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        for (let j = 0; j < row.length; j++) {
+            roles.push(row[j]);
+        }
+        console.table('', roles);
+        console.log('Arrow down to perform another action');
+    })
+
+};
