@@ -3,7 +3,7 @@ const inputCheck = require('./utils/inputCheck');
 const db = require('./db/connection');
 
 
-const PORT = process.env.PORT || 3015;
+const PORT = process.env.PORT || 3306;
 const app = express();
 
 // express middleware
