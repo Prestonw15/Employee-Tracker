@@ -20,7 +20,7 @@ async function startQuestions() {
         }
     ])
     
-    // if the user decides to view all departments show all departments 
+    // Allows user to view all departments 
     if (question.trackerAction === 'View all departments') {
         viewDepartments();
        
@@ -29,16 +29,62 @@ async function startQuestions() {
 
 
 
-    // if the user decides to view all roles show all roles 
+    // Allows user to view all roles 
     if (question.trackerAction === "View all roles") {
         viewRoles();
         
     }
 
 
-    // if the user decides to view all employees show employees
+    // Allows user to view all employees
     if (question.trackerAction === "View all employees") {
         viewEmployees();
        
+    }
+    // Allows user to add a role 
+    let newRole
+    if (question.trackerAction === "Add a role") {
+        newRole = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'newRoleTitle',
+                message: "What is the title of the new role? (Required)",
+                validate: newRoleTitle => {
+                    if (newRoleTitle) {
+                        return true;
+                    } else {
+                        console.log("Please enter a role title")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'newRoleSalary',
+                message: "What is the new role's salary? (Required)",
+                validate: newRoleSalary => {
+                    if (newRoleSalary) {
+                        return true;
+                    } else {
+                        console.log("Please enter the role's salary")
+                    }
+                }
+            },
+            {
+                type: 'list',
+                name: 'departmentID',
+                message: "What department does the new role belong to?",
+                choices: ['1', '2', '3', '4']
+            }
+
+        ])
+        // if a new role is added push to array so that it can be added in addRole() function 
+        if (newRole) {
+
+            roles.push(newRole)
+            
+        }
+
+        addRole();
+        
     }
 }
