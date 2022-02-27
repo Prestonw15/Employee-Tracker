@@ -87,4 +87,81 @@ async function startQuestions() {
         addRole();
         
     }
+    
+    // Allow user to add an employee 
+    if (question.trackerAction === "Add an employee") {
+        
+        newEmployee = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'newEmployeeFirstName',
+                message: "What is the employee's first name? (Required)",
+                validate: newEmployeeFirstName => {
+                    if (newEmployeeFirstName) {
+                        return true;
+                    } else {
+                        console.log("Please enter the employee's first name!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'newEmployeeLastName',
+                message: "What is the employee's last name? (Required)",
+                validate: newEmployeeLastName => {
+                    if (newEmployeeLastName) {
+                        return true;
+                    } else {
+                        console.log("Please enter the employee's last name!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'roleID',
+                message: "What is the employee's role id? (Required)",
+                validate: roleID => {
+                    if (roleID) {
+                        return true;
+                    } else {
+                        console.log("Please enter the role ID!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'managerName',
+                message: "What is the Manager's name? (Required)",
+                validate: managerName => {
+                    if (managerName) {
+                        return true;
+                    } else {
+                        console.log("Please enter the manager's name!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'departmentID',
+                message: "What is the employee's department id? (Required)",
+                validate: departmentID => {
+                    if (departmentID) {
+                        return true;
+                    } else {
+                        console.log("Please enter the department ID!")
+                    }
+                }
+            }
+
+        ])
+        if (newEmployee) {
+
+            employees.push(newEmployee);
+            
+        }
+
+        addEmployee();
+       
+    }
+
 }
