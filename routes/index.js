@@ -307,3 +307,43 @@ const viewEmployees = () => {
         console.log('Arrow down to perform another action');
     })
 };
+
+// function to add a role
+const addRole = () => {
+
+
+    const params = [roles[roles.length-1].newRoleTitle, roles[roles.length-1].newRoleSalary, roles[roles.length-1].departmentID];
+
+    db.query(`INSERT INTO employeerole (title, salary, department_id)
+    VALUES (?, ?, ?)`, params, (err, res) => {
+        if (err) {
+
+            return;
+        }
+
+    });
+
+    console.log('The role has been added!')
+    console.log('Arrow down to perform another action');
+
+};
+
+// function to add an employee 
+const addEmployee = () => {
+
+    const params = [employees[employees.length-1].newEmployeeFirstName, employees[employees.length-1].newEmployeeLastName, employees[employees.length-1].roleID, employees[employees.length-1].managerName, employees[employees.length-1].departmentID];
+    
+    db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_name, department_id)
+    VALUES (?, ?, ?, ?, ?)`, params, (err, res) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+
+        console.log('', "The employee has been added!")
+        console.log("Arrow down to perform another action");
+
+    });
+
+};
