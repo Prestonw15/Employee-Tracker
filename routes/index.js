@@ -347,3 +347,40 @@ const addEmployee = () => {
     });
 
 };
+
+// function to add a department 
+const addDepartment = () => {
+    const params = [departments[departments.length-1].newDepartment];
+    
+    db.query(`INSERT INTO department (department_name)
+    VALUES (?)`, params, (err, res) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        console.log("The department has been added!")
+        console.log("Arrow down to perform another action");
+    });
+};
+
+// function to update an employee role 
+const updateEmployeeRole = () => {
+    
+    const params = [updatedRole[0].newRoleID, updatedRole[0].employeeFirstName, updatedRole[0].employeeLastName];
+   
+    db.query(`UPDATE employee set role_id = ?
+    WHERE first_name = ? and last_name = ?`, params, (err, res) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log("The employee has been updated!")
+        console.log("Arrow down to perform another action");
+    });
+
+
+}
+
+// starts the program 
+startQuestions();
