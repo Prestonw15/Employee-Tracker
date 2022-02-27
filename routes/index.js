@@ -163,5 +163,80 @@ async function startQuestions() {
         addEmployee();
        
     }
+       
+        // Allow user to add a department 
+        if (question.trackerAction === 'Add a department') {
+            newDepartment = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'newDepartment',
+                    message: "What is the new Department name? (Required)",
+                    validate: newDepartment => {
+                        if (newDepartment) {
+                            return true;
+                        } else {
+                            console.log("Please enter a department name!")
+                        }
+                    }
+                }
+            ])
+            if (newDepartment) {
+    
+                departments.push(newDepartment);
+                
+            }
+            addDepartment();
+           
+        }
+      // Allows user to update an employee role
+      if (question.trackerAction === "Update employee role") {
+        
+        updatedEmployeeRole = await inquirer.prompt([ 
+            {
+                type: 'input',
+                name: 'employeeFirstName',
+                message: "What is the first name of the employee you would like to update? (Required)",
+                validate: employeeFirstName => {
+                    if (employeeFirstName) {
+                        return true;
+                    } else {
+                        console.log("Please enter your employee's first name!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'employeeLastName',
+                message: "What is the last name of the employee you would like to update? (Required)",
+                validate: employeeLastName => {
+                    if (employeeLastName) {
+                        return true;
+                    } else {
+                        console.log("Please enter your employee's last name!")
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'newRoleID',
+                message: "What is the new role id you would like to assign the employee? (Required)",
+                validate: newRoleID => {
+                    if (newRoleID) {
+                        return true;
+                    } else {
+                        console.log("Please enter the new role ID!")
+                    }
+                }
+            }
+        ])
+
+        if (updatedEmployeeRole) {
+            updatedRole.push(updatedEmployeeRole);
+            
+        }
+        
+        updateEmployeeRole();
+       
+    }
 
 }
