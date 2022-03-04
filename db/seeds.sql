@@ -1,3 +1,7 @@
+CREATE database employee;
+USE employee;
+
+
 INSERT INTO employeerole (title, salary, department_id)
 VALUES 
 ('Salesperson', '80000', 1),
